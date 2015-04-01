@@ -1,0 +1,18 @@
+# --
+# Copyright (c) 2015 by Lukasz Marcin Podkalicki <lukasz@podkalicki.com>
+#
+# example.in - common settings
+# --
+
+MCU=attiny85
+F_CPU=16500000
+FUSE_L=0xe1
+FUSE_H=0xdd
+CC=avr-gcc
+OBJCOPY=avr-objcopy
+AVRDUDE_FLASH=avrdude -p ${MCU} -c usbasp -U flash:w:main.hex:i -F -P usb
+AVRDUDE_FUSE=avrdude -p ${MCU} -c usbasp -U hfuse:w:${FUSE_H}:m -U lfuse:w:${FUSE_L}:m
+CFLAGS=-std=c99 -Wall -g -Os -mmcu=${MCU} -DF_CPU=${F_CPU} -I. -I../../../libavrino/include -I../../../libvusb
+LIBAVRINO_DIR=../../../libavrino
+LIBVUSB_DIR=../../../libvusb
+

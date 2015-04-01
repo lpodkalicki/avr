@@ -1,0 +1,19 @@
+# --
+# Copyright (c) 2015 by Lukasz Marcin Podkalicki <lukasz@podkalicki.com>
+#
+# device.in
+# --
+
+MCU=atmega328p
+F_CPU=8000000
+FUSE_L=0xE2
+FUSE_H=0xD9
+FUSE_E=0x07
+CC=avr-gcc
+OBJCOPY=avr-objcopy
+AVRDUDE_FLASH=avrdude -p ${MCU} -c usbasp -U flash:w:main.hex:i -F -P usb
+AVRDUDE_FUSE=avrdude -p ${MCU} -c usbasp -U hfuse:w:${FUSE_H}:m -U lfuse:w:${FUSE_L}:m -U efuse:w:${FUSE_E}:m
+CFLAGS=-std=c99 -Wall -g -Os -mmcu=${MCU} -DF_CPU=${F_CPU} -I. -I../../../libavrino/include -I../../../libvusb
+LIBAVRINO_DIR=../../../libavrino
+LIBVUSB_DIR=../../../libvusb
+

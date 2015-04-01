@@ -1,0 +1,20 @@
+/**
+ * Copyright (c) 2015 by Lukasz Marcin Podkalicki <lukasz@podkalicki.com>
+ */
+
+#ifndef	_AVRINO_CONFIG_H_
+#define	_AVRINO_CONFIG_H_
+
+#if !defined(UART_TX) && defined(UART_TX_ENABLED)
+# define	UART_TX		D3
+#endif	/* !UART_TX */
+
+#if !defined(UART_RX) && defined(UART_RX_ENABLED)
+# define	UART_RX		D4
+#endif	/* !UART_RX */
+
+#if !defined(UART_BAUDRATE) && (defined(UART_TX_ENABLED) || defined(UART_RX_ENABLED))
+# define	UART_BAUDRATE	(9600)
+#endif	/* !UART_BAUDRATE */
+
+#endif	/* !_AVRINO_CONFIG_H_ */
